@@ -1,0 +1,7 @@
+{
+  "name": "Indicadores",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

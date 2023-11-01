@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar  color="warning">
+    <ion-segment >
+      <ion-segment-button (click)="indicadores()">
+        <ion-label color="dark" ><strong>INDICADORES</strong></ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button  (click)="salaBrote()">
+        <ion-label color="dark" ><strong>SALA DE BROTE</strong></ion-label>
+      </ion-segment-button >
+
+      <ion-segment-button  (click)="reloadPage()">
+        <ion-label color="dark" ><strong>INDICADORES SEMANALES</strong></ion-label>
+      </ion-segment-button >
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="div1">
+    <ion-button id="hover-trigger" class="fecha">Fecha</ion-button>
+    <ion-popover trigger="hover-trigger" triggerAction="hover">
+      <ng-template>
+        <ion-content>
+          <ion-datetime presentation="date" [multiple]="true" ></ion-datetime>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+  </div>
+
+</ion-content>

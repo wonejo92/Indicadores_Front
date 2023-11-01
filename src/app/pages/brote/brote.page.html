@@ -1,0 +1,165 @@
+<ion-app>
+  <ion-header>
+    <script>
+      console.log("funca")
+    </script>
+    <ion-toolbar color="warning">
+      <ion-segment >
+        <ion-segment-button (click)="indicadores()">
+          <ion-label color="dark" ><strong>INDICADORES</strong></ion-label>
+        </ion-segment-button>
+        <ion-segment-button  (click)="reloadPage()">
+          <ion-label color="dark" ><strong>SALA DE BROTE</strong></ion-label>
+        </ion-segment-button >
+        <ion-segment-button  (click)="indicadoresSemanales()">
+          <ion-label color="dark" ><strong>INDICADORES SEMANALES</strong></ion-label>
+        </ion-segment-button >
+
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+<!--    <h1> Los datos seran actualizados en  <strong>{{ display }} </strong> Minutos.</h1>-->
+<!--    <h1> Los datos seran actualizados caday  <strong>5</strong> Minutos.</h1>-->
+
+    <ion-button class="ion-padding" color="warning" (click)="update()">Refrescar Datos</ion-button>
+
+      <ion-item-divider ></ion-item-divider>
+<!--      <ion-title class="sala_brote"> <strong>SALA DE BROTE</strong></ion-title>-->
+      <br>
+
+      <div class="table-container-2">
+        <div class="balanza2VSbalanza3">
+          <table class="tableB2B3" >
+            <caption><strong>PRECLASIFICACION</strong></caption>
+            <tr>
+              <th>Grados</th>
+              <th class="fecha-tittle">{{fechas[0]}}</th>
+              <th  class="fecha-tittle">{{fechas[1]}}</th>
+              <th  class="fecha-tittle">{{fechas[2]}}</th>
+              <th  class="fecha-tittle">{{fechas[3]}}</th>
+              <th  class="fecha-tittle">{{fechas[4]}}</th>
+              <th  class="fecha-tittle">{{fechas[5]}}</th>
+              <th  class="fecha-tittle">{{fechas[6]}}</th>
+              <th  class="fecha-tittle">{{fechas[7]}}</th>
+              <th  class="fecha-tittle">{{fechas[8]}}</th>
+            </tr>
+            <tr *ngFor="let item of gradosName; let i=index">
+              <td >{{item}}</td>
+              <td>{{columna1[i]}}</td>
+              <td>{{columna2[i]}}</td>
+              <td>{{columna3[i]}}</td>
+              <td>{{columna4[i]}}</td>
+              <td>{{columna5[i]}}</td>
+              <td>{{columna6[i]}}</td>
+              <td>{{columna7[i]}}</td>
+              <td>{{columna8[i]}}</td>
+              <td>{{columna9[i]}}</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+      <ion-item-divider ></ion-item-divider>
+      <br>
+      <div class="table-container-2">
+        <div class="balanza2VSbalanza3">
+          <table class="tableB2B3" >
+            <caption><strong>APERTURA</strong></caption>
+            <tr>
+              <th>Grados</th>
+              <th class="fecha-tittle">{{fechas[0]}}</th>
+              <th class="fecha-tittle">{{fechas[1]}}</th>
+              <th class="fecha-tittle">{{fechas[2]}}</th>
+              <th class="fecha-tittle">{{fechas[3]}}</th>
+              <th class="fecha-tittle">{{fechas[4]}}</th>
+              <th class="fecha-tittle">{{fechas[5]}}</th>
+              <th class="fecha-tittle">{{fechas[6]}}</th>
+              <th class="fecha-tittle">{{fechas[7]}}</th>
+              <th class="fecha-tittle">{{fechas[8]}}</th>
+            </tr>
+            <tr *ngFor="let item of gradosApertura; let i=index">
+              <td >{{item}}</td>
+              <td>{{Acolumna1[i]}}</td>
+              <td>{{Acolumna2[i]}}</td>
+              <td>{{Acolumna3[i]}}</td>
+              <td>{{Acolumna4[i]}}</td>
+              <td>{{Acolumna5[i]}}</td>
+              <td>{{Acolumna6[i]}}</td>
+              <td>{{Acolumna7[i]}}</td>
+              <td>{{Acolumna8[i]}}</td>
+              <td>{{Acolumna9[i]}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <ion-item-divider ></ion-item-divider>
+      <br>
+      <div class="table-container-2">
+        <div class="balanza2VSbalanza3">
+          <table class="tableB2B3" >
+            <caption><strong>CLOUD</strong></caption>
+            <tr>
+              <th>Grados</th>
+              <th class="fecha-tittle">{{fechas[0]}}</th>
+              <th class="fecha-tittle">{{fechas[1]}}</th>
+              <th class="fecha-tittle">{{fechas[2]}}</th>
+              <th class="fecha-tittle">{{fechas[3]}}</th>
+              <th class="fecha-tittle">{{fechas[4]}}</th>
+              <th class="fecha-tittle">{{fechas[5]}}</th>
+              <th class="fecha-tittle">{{fechas[6]}}</th>
+              <th class="fecha-tittle">{{fechas[7]}}</th>
+              <th class="fecha-tittle">{{fechas[8]}}</th>
+            </tr>
+            <tr *ngFor="let item of gradosName; let i=index">
+              <td >{{item}}</td>
+              <td>{{Ccolumna1[i]}}</td>
+              <td>{{Ccolumna2[i]}}</td>
+              <td>{{Ccolumna3[i]}}</td>
+              <td>{{Ccolumna4[i]}}</td>
+              <td>{{Ccolumna5[i]}}</td>
+              <td>{{Ccolumna6[i]}}</td>
+              <td>{{Ccolumna7[i]}}</td>
+              <td>{{Ccolumna8[i]}}</td>
+              <td>{{Ccolumna9[i]}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <ion-item-divider ></ion-item-divider>
+      <br>
+      <div class="table-container-2">
+        <div class="balanza2VSbalanza3">
+          <table class="tableB2B3" >
+            <caption><strong>GV</strong></caption>
+            <tr>
+              <th>Grados</th>
+              <th class="fecha-tittle">{{fechas[0]}}</th>
+              <th class="fecha-tittle">{{fechas[1]}}</th>
+              <th class="fecha-tittle">{{fechas[2]}}</th>
+              <th class="fecha-tittle">{{fechas[3]}}</th>
+              <th class="fecha-tittle">{{fechas[4]}}</th>
+              <th class="fecha-tittle">{{fechas[5]}}</th>
+              <th class="fecha-tittle">{{fechas[6]}}</th>
+            </tr>
+            <tr *ngFor="let item of gradosName; let i=index">
+              <td >{{item}}</td>
+              <td>{{GVcolumna1[i]}}</td>
+              <td>{{GVcolumna2[i]}}</td>
+              <td>{{GVcolumna3[i]}}</td>
+              <td>{{GVcolumna4[i]}}</td>
+              <td>{{GVcolumna5[i]}}</td>
+              <td>{{GVcolumna6[i]}}</td>
+              <td>{{GVcolumna7[i]}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+  </ion-content>
+</ion-app>

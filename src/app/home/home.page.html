@@ -1,0 +1,403 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-segment >
+      <ion-segment-button (click)="reloadPage()">
+        <ion-label color="dark" ><strong>INDICADORES</strong></ion-label>
+<!--        <app-menu></app-menu>-->
+      </ion-segment-button>
+
+      <ion-segment-button  (click)="salaBrote()">
+        <ion-label color="dark" ><strong>SALA DE BROTE</strong></ion-label>
+      </ion-segment-button >
+
+      <ion-segment-button  (click)="indicadoresSemanal()">
+        <ion-label  color="dark"><strong>Indicadores Semanales</strong></ion-label>
+      </ion-segment-button >
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<!--<ion-content  class="ion-page" id="main-content" >-->
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Indicadores</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card color="medium" class="indicadores-container">
+    <ion-card-header>
+      <ion-card-title>Indicadores Diarios</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-card color="light" id="indicador1" class="indicadorDiario">
+        <ion-card-header>
+          <ion-card-title>Balanza 1 VS Balanza 1AB</ion-card-title>
+          <ion-card-subtitle> <strong> Balanza 1 : </strong> {{ppesoB1}} &nbsp; &nbsp;<strong> Balanza 1AB : </strong>{{ppesoB1AB}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content> <strong> Perdida : </strong> {{ b1VSB1AB }} <strong>%</strong> </ion-card-content>
+      </ion-card>
+
+      <ion-card color="light"  id="indicador2" class="indicadorDiario">
+        <ion-card-header>
+          <ion-card-title>Hidratacion Balanza 1AB VS Balanza 2</ion-card-title>
+          <ion-card-subtitle> <strong> Balanza 1AB : </strong> {{hb1ab}} &nbsp; <strong> Balanza 2: </strong> {{hb2}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content> <strong> Hidratacion : </strong> {{ hb1ABVShb2 }} <strong>%</strong>   </ion-card-content>
+      </ion-card>
+
+<!--      <ion-card color="success"  id="indicador3" class="indicadorDiario">-->
+<!--        <ion-card-header>-->
+<!--          <ion-card-title>a</ion-card-title>-->
+<!--          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>-->
+<!--        </ion-card-header>-->
+
+<!--        <ion-card-content> Card Content </ion-card-content>-->
+<!--      </ion-card>-->
+
+<!--      <ion-card color="success"  id="indicador4" class="indicadorDiario">-->
+<!--        <ion-card-header>-->
+<!--          <ion-card-title>a</ion-card-title>-->
+<!--          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>-->
+<!--        </ion-card-header>-->
+
+<!--        <ion-card-content> Card Content </ion-card-content>-->
+<!--      </ion-card>-->
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item-divider ></ion-item-divider>
+
+
+  <div class="parent">
+    <div class="div1">
+      <ion-button id="hover-trigger" class="fecha">Fecha</ion-button>
+      <ion-popover trigger="hover-trigger" triggerAction="hover" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-datetime [(ngModel)]="indicadores.fecha" presentation="date"></ion-datetime>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </div>
+
+    <div class="div2">
+      <ion-list>
+        <ion-item>
+          <ion-select [(ngModel)]="indicadores.destino" aria-label="Destino" interface="popover" placeholder="Destino" fill="outline" (ionChange)="evento()" >
+            <ion-select-option value="PRECLASIFICACION" >PRECLASIFICACION</ion-select-option>
+            <ion-select-option value="GV SIN PELAR" >GV SIN PELAR</ion-select-option>
+            <ion-select-option value="APERTURA" >APERTURA</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="div3">
+      <ion-list>
+        <ion-item>
+          <ion-select [(ngModel)]="indicadores.variedad" aria-label="Variedad" interface="popover" placeholder="Variedad" fill="outline" >
+            <ion-select-option value="XLENCE">XLENCE</ion-select-option>
+            <ion-select-option value="CLOUD">CLOUD</ion-select-option>
+            <!--        <ion-select-option value="bananas">Bananas</ion-select-option>-->
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+
+<!--    <div class="div4">-->
+<!--      <ion-list>-->
+<!--        <ion-item>-->
+<!--          <ion-select interface="popover" placeholder="{{indicadores.origen}}" fill="outline"   value="{{indicadores.origen}}">-->
+<!--            <ion-select-option value="{{indicadores.origen}}">{{indicadores.origen}}</ion-select-option>-->
+<!--&lt;!&ndash;            <ion-select-option value="GV PELADO">GV PELADO</ion-select-option>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ion-select-option value="GV SIN PELAR">GV SIN PELAR</ion-select-option>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <ion-select-option value="bananas">Bananas</ion-select-option>&ndash;&gt;-->
+<!--          </ion-select>-->
+<!--        </ion-item>-->
+<!--      </ion-list>-->
+<!--    </div>-->
+
+  </div>
+
+  <ion-button (click)="aceptar2()" color="success">Consultar</ion-button>
+<!--  <ion-button (click)="caminoApertura()">Camino Apertura</ion-button>-->
+  <br>
+  <br>
+
+  <div class="table-container" id="preclasificacion">
+
+    <div class="table">
+      <table class="main-table">
+        <caption><strong>Balanza 1 VS Balanza 1AB</strong></caption>
+        <tr>
+          <th>Fecha</th>
+          <th>balanza 1</th>
+          <th>Balanza 1AB</th>
+          <th>Perdida</th>
+        </tr>
+        <tr *ngFor="let item of listFechasB1; let i=index">
+          <td >{{item}}</td>
+          <td>{{listB1[i]}}</td>
+          <td>{{listB1AB[i]}}</td>
+          <td>{{resultB1VSB1AB[i]}} <strong>%</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="table">
+      <table class="main-table" >
+        <caption><strong>Hidratacion Balanza 1AB VS 2</strong></caption>
+        <tr>
+          <th>Fecha</th>
+          <th>Balanza 1AB</th>
+          <th>Balanza 2</th>
+          <th>Perdida</th>
+        </tr>
+        <tr *ngFor="let item of listFechasB1; let i=index">
+          <td >{{item}}</td>
+          <td>{{listHB1AB[i]}}</td>
+          <td>{{listHB2[i]}}</td>
+          <td>{{resultHB1ABVSB2[i]}} <strong>%</strong></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="table-container-2" id="preclasificacion1">
+    <div class="balanza2VSbalanza3">
+      <table class="tableB2B3" >
+        <caption><strong>Desperdicio Balanza 2 VS Balanza 3</strong></caption>
+        <tr>
+          <th>Fecha</th>
+          <th>Blanco B2</th>
+          <th>Blanco B3</th>
+          <th>Perdida</th>
+          <th>Tinturado B2</th>
+          <th>Tinturado B3</th>
+          <th>Perdida</th>
+          <th>Arcoiris B2</th>
+          <th>Arcoiris B3</th>
+          <th>Perdida</th>
+        </tr>
+        <tr *ngFor="let item of listFechasB1; let i=index">
+          <td >{{item}}</td>
+          <td>{{listDBlancoB2[i]}}</td>
+          <td>{{listDBlancoB3[i]}}</td>
+          <td>{{resultDBlanco[i]}} <strong>%</strong></td>
+          <td>{{listDTintB2[i]}} </td>
+          <td>{{listDTintB3[i]}} </td>
+          <td>{{resultDTint[i]}} <strong>%</strong></td>
+          <td>{{listDArcoB2[i]}} </td>
+          <td>{{listDArcoB3[i]}} </td>
+          <td class="resultado" id='perdidaArcoiris[i]'>{{resultDArco[i]}} <strong>%</strong></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <div class="table-container-2" style="display: none" id="TableApertura">
+    <div class="balanza2VSbalanza3">
+      <table class="tableB2B3" >
+        <caption><strong>Camino Apertura</strong></caption>
+        <tr>
+          <th>Fecha</th>
+          <th>Peso Balanza 1</th>
+          <th>Peso Balanza 2</th>
+          <th>Hidratacion</th>
+          <th>Tallos B1</th>
+          <th>Tallos B2</th>
+          <th>Perdida de tallos</th>
+
+        </tr>
+        <tr *ngFor="let item of listfechasApertura; let i=index">
+          <td >{{item}}</td>
+          <td>{{listAB1[i]}}</td>
+          <td>{{listAB2[i]}} </td>
+          <td>{{resultAB1[i]}} <strong>%</strong></td>
+          <td>{{tallosAB1[i]}}</td>
+          <td>{{tallosAB2[i]}} </td>
+          <td>{{resultATallos[i]}} <strong>%</strong></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <div class="table-container-2" style="display: none" id="TableApertura1">
+    <div class="balanza2VSbalanza3">
+      <table class="tableB2B3" >
+        <caption><strong>Camino Apertura</strong></caption>
+        <tr>
+          <th>Fecha</th>
+          <th>Peso Balanza 2</th>
+          <th>Peso Balanza 2A</th>
+          <th>Perdida</th>
+
+
+        </tr>
+        <tr *ngFor="let item of listfechasApertura; let i=index">
+          <td >{{item}}</td>
+          <td>{{listCAB2[i]}}</td>
+          <td>{{listCAB2A[i]}}</td>
+          <td>{{resultCA2[i]}} <strong>%</strong></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+<!--  <ion-item-divider ></ion-item-divider>-->
+<!--  <ion-title class="sala_brote"> <strong>SALA DE BROTE</strong></ion-title>-->
+<!--  <br>-->
+
+<!--  <div class="table-container-2">-->
+<!--    <div class="balanza2VSbalanza3">-->
+<!--      <table class="tableB2B3" >-->
+<!--        <caption><strong></strong></caption>-->
+<!--        <tr>-->
+<!--          <th>Grados</th>-->
+<!--          <th>{{fechas[0]}}</th>-->
+<!--          <th>{{fechas[1]}}</th>-->
+<!--          <th>{{fechas[2]}}</th>-->
+<!--          <th>{{fechas[3]}}</th>-->
+<!--          <th>{{fechas[4]}}</th>-->
+<!--          <th>{{fechas[5]}}</th>-->
+<!--          <th>{{fechas[6]}}</th>-->
+<!--          <th>{{fechas[7]}}</th>-->
+<!--          <th>{{fechas[8]}}</th>-->
+<!--        </tr>-->
+<!--        <tr *ngFor="let item of gradosName; let i=index">-->
+<!--          <td >{{item}}</td>-->
+<!--          <td>{{columna1[i]}}</td>-->
+<!--          <td>{{columna2[i]}}</td>-->
+<!--          <td>{{columna3[i]}}</td>-->
+<!--          <td>{{columna4[i]}}</td>-->
+<!--          <td>{{columna5[i]}}</td>-->
+<!--          <td>{{columna6[i]}}</td>-->
+<!--          <td>{{columna7[i]}}</td>-->
+<!--          <td>{{columna8[i]}}</td>-->
+<!--          <td>{{columna9[i]}}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--  <ion-item-divider ></ion-item-divider>-->
+<!--  <br>-->
+<!--  <div class="table-container-2">-->
+<!--    <div class="balanza2VSbalanza3">-->
+<!--      <table class="tableB2B3" >-->
+<!--        <caption><strong>APERTURA</strong></caption>-->
+<!--        <tr>-->
+<!--          <th>Grados</th>-->
+<!--          <th>{{fechas[0]}}</th>-->
+<!--          <th>{{fechas[1]}}</th>-->
+<!--          <th>{{fechas[2]}}</th>-->
+<!--          <th>{{fechas[3]}}</th>-->
+<!--          <th>{{fechas[4]}}</th>-->
+<!--          <th>{{fechas[5]}}</th>-->
+<!--          <th>{{fechas[6]}}</th>-->
+<!--          <th>{{fechas[7]}}</th>-->
+<!--          <th>{{fechas[8]}}</th>-->
+<!--        </tr>-->
+<!--        <tr *ngFor="let item of gradosName; let i=index">-->
+<!--          <td >{{item}}</td>-->
+<!--          <td>{{Acolumna1[i]}}</td>-->
+<!--          <td>{{Acolumna2[i]}}</td>-->
+<!--          <td>{{Acolumna3[i]}}</td>-->
+<!--          <td>{{Acolumna4[i]}}</td>-->
+<!--          <td>{{Acolumna5[i]}}</td>-->
+<!--          <td>{{Acolumna6[i]}}</td>-->
+<!--          <td>{{Acolumna7[i]}}</td>-->
+<!--          <td>{{Acolumna8[i]}}</td>-->
+<!--          <td>{{Acolumna9[i]}}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <ion-item-divider ></ion-item-divider>-->
+<!--  <br>-->
+<!--  <div class="table-container-2">-->
+<!--    <div class="balanza2VSbalanza3">-->
+<!--      <table class="tableB2B3" >-->
+<!--        <caption><strong>CLOUD</strong></caption>-->
+<!--        <tr>-->
+<!--          <th>Grados</th>-->
+<!--          <th>{{fechas[0]}}</th>-->
+<!--          <th>{{fechas[1]}}</th>-->
+<!--          <th>{{fechas[2]}}</th>-->
+<!--          <th>{{fechas[3]}}</th>-->
+<!--          <th>{{fechas[4]}}</th>-->
+<!--          <th>{{fechas[5]}}</th>-->
+<!--          <th>{{fechas[6]}}</th>-->
+<!--          <th>{{fechas[7]}}</th>-->
+<!--          <th>{{fechas[8]}}</th>-->
+<!--        </tr>-->
+<!--        <tr *ngFor="let item of gradosName; let i=index">-->
+<!--          <td >{{item}}</td>-->
+<!--          <td>{{Ccolumna1[i]}}</td>-->
+<!--          <td>{{Ccolumna2[i]}}</td>-->
+<!--          <td>{{Ccolumna3[i]}}</td>-->
+<!--          <td>{{Ccolumna4[i]}}</td>-->
+<!--          <td>{{Ccolumna5[i]}}</td>-->
+<!--          <td>{{Ccolumna6[i]}}</td>-->
+<!--          <td>{{Ccolumna7[i]}}</td>-->
+<!--          <td>{{Ccolumna8[i]}}</td>-->
+<!--          <td>{{Ccolumna9[i]}}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <ion-item-divider ></ion-item-divider>-->
+<!--  <br>-->
+<!--  <div class="table-container-2">-->
+<!--    <div class="balanza2VSbalanza3">-->
+<!--      <table class="tableB2B3" >-->
+<!--        <caption><strong>GV</strong></caption>-->
+<!--        <tr>-->
+<!--          <th>Grados</th>-->
+<!--          <th>{{fechas[0]}}</th>-->
+<!--          <th>{{fechas[1]}}</th>-->
+<!--          <th>{{fechas[2]}}</th>-->
+<!--          <th>{{fechas[3]}}</th>-->
+<!--          <th>{{fechas[4]}}</th>-->
+<!--          <th>{{fechas[5]}}</th>-->
+<!--          <th>{{fechas[6]}}</th>-->
+<!--        </tr>-->
+<!--        <tr *ngFor="let item of gradosName; let i=index">-->
+<!--          <td >{{item}}</td>-->
+<!--          <td>{{GVcolumna1[i]}}</td>-->
+<!--          <td>{{GVcolumna2[i]}}</td>-->
+<!--          <td>{{GVcolumna3[i]}}</td>-->
+<!--          <td>{{GVcolumna4[i]}}</td>-->
+<!--          <td>{{GVcolumna5[i]}}</td>-->
+<!--          <td>{{GVcolumna6[i]}}</td>-->
+<!--          <td>{{GVcolumna7[i]}}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</ion-content>
+</ion-app>

@@ -1,0 +1,110 @@
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+.indicadorDiario{
+  float: left;
+  width: 45%;
+}
+.indicadores-container{
+  padding-left: 5%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 10%;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 1 / 3 / 2 / 4; }
+.div4 { grid-area: 1 / 4 / 2 / 5; }
+
+.fecha{
+  padding-top: 0.5%;
+  width: 95%;
+  height: 80%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 25%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.table-container{
+  padding-left: 2%;
+  //padding-right: 6%;
+  width: 100%;
+  overflow: hidden;
+}
+.table-container-2{
+  padding-left: 2%;
+  padding-right: 2.5%;
+  //padding-right: 6%;
+  width: 100%;
+  overflow: hidden;
+}
+.table{
+  float: left;
+  //background-color: #28ba62;
+  width: 50%;;
+}
+.main-table{
+  padding-right: 50%;
+  width: 95%;
+}
+
+.balanza2VSbalanza3{
+  //background-color: #46b0e0;
+  height: 50%;
+  width: 100%;
+}
+.tableB2B3{
+  width: 100%;
+}
+
+.sala_brote{
+  text-align: center;
+
+}
+
