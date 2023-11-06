@@ -12,6 +12,7 @@ export class BrotePage implements OnInit {
   //Sala Brote
   gradosName:any=['25','30','35','40','45','50','BQT','PET',"TOTAL"]
   gradosApertura:any=['25','30','35','40','45','50','55','BQT','PET',"TOTAL"]
+  gradosCloud:any=['25','30','35','40','45','50','55','BQT','PET',"TOTAL"]
   columna1:any=[]
   columna2:any=[]
   columna3:any=[]
@@ -133,6 +134,8 @@ export class BrotePage implements OnInit {
     //CLOUD sala en brote
     this.indicadoresService.getSalaBroteCloud().subscribe(result=>{
       const data=Object.values(result)
+      console.log("---CLOUD-----")
+      console.log("FUNCAAAAAAA---------------")
       console.log(data)
       console.log(data[1][1])
       // this.fechas=data[0]
