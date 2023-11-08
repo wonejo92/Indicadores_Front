@@ -10,9 +10,9 @@ import {IndicadoresService} from "../../services/indicadores.service";
 export class BrotePage implements OnInit {
   display: any; //TIMER
   //Sala Brote
-  gradosName:any=['25','30','35','40','45','50','BQT','PET',"TOTAL"]
-  gradosApertura:any=['25','30','35','40','45','50','55','BQT','PET',"TOTAL"]
-  gradosCloud:any=['25','30','35','40','45','50','55','BQT','PET',"TOTAL"]
+  gradosName:any=['25','30','35','40','45','50','BQT','PET',"TOTAL SIN PET"]
+  gradosApertura:any=['25','30','35','40','45','50','55','BQT','PET',"TOTAL SIN PET"]
+  gradosCloud:any=['25','30','35','40','45','50','55','BQT','PET',"TOTAL SIN PET"]
   columna1:any=[]
   columna2:any=[]
   columna3:any=[]
@@ -73,15 +73,16 @@ export class BrotePage implements OnInit {
       this.columna7=data[1][6]
       this.columna8=data[1][7]
       this.columna9=data[1][8]
-      const sumc1=this.columna1.reduce((a:any, b:any) => a + b, 0)
-      const sumc2=this.columna2.reduce((a:any, b:any) => a + b, 0)
-      const sumc3=this.columna3.reduce((a:any, b:any) => a + b, 0)
-      const sumc4=this.columna4.reduce((a:any, b:any) => a + b, 0)
-      const sumc5=this.columna5.reduce((a:any, b:any) => a + b, 0)
-      const sumc6=this.columna6.reduce((a:any, b:any) => a + b, 0)
-      const sumc7=this.columna7.reduce((a:any, b:any) => a + b, 0)
-      const sumc8=this.columna8.reduce((a:any, b:any) => a + b, 0)
-      const sumc9=this.columna9.reduce((a:any, b:any) => a + b, 0)
+      const sumc1=this.sum(this.columna1)
+      // const sumc1=this.columna1.reduce((a:any, b:any) => a + b, 0)
+      const sumc2=this.sum(this.columna2)
+      const sumc3=this.sum(this.columna3)
+      const sumc4=this.sum(this.columna4)
+      const sumc5=this.sum(this.columna5)
+      const sumc6=this.sum(this.columna6)
+      const sumc7=this.sum(this.columna7)
+      const sumc8=this.sum(this.columna8)
+      const sumc9=this.sum(this.columna9)
       this.columna1.push(sumc1)
       this.columna2.push(sumc2)
       this.columna3.push(sumc3)
@@ -110,15 +111,15 @@ export class BrotePage implements OnInit {
       this.Acolumna7=data[1][6]
       this.Acolumna8=data[1][7]
       this.Acolumna9=data[1][8]
-      const sumc1=this.Acolumna1.reduce((a:any, b:any) => a + b, 0)
-      const sumc2=this.Acolumna2.reduce((a:any, b:any) => a + b, 0)
-      const sumc3=this.Acolumna3.reduce((a:any, b:any) => a + b, 0)
-      const sumc4=this.Acolumna4.reduce((a:any, b:any) => a + b, 0)
-      const sumc5=this.Acolumna5.reduce((a:any, b:any) => a + b, 0)
-      const sumc6=this.Acolumna6.reduce((a:any, b:any) => a + b, 0)
-      const sumc7=this.Acolumna7.reduce((a:any, b:any) => a + b, 0)
-      const sumc8=this.Acolumna8.reduce((a:any, b:any) => a + b, 0)
-      const sumc9=this.Acolumna9.reduce((a:any, b:any) => a + b, 0)
+      const sumc1=this.sum(this.Acolumna1)
+      const sumc2=this.sum(this.Acolumna2)
+      const sumc3=this.sum(this.Acolumna3)
+      const sumc4=this.sum(this.Acolumna4)
+      const sumc5=this.sum(this.Acolumna5)
+      const sumc6=this.sum(this.Acolumna6)
+      const sumc7=this.sum(this.Acolumna7)
+      const sumc8=this.sum(this.Acolumna8)
+      const sumc9=this.sum(this.Acolumna9)
       this.Acolumna1.push(sumc1)
       this.Acolumna2.push(sumc2)
       this.Acolumna3.push(sumc3)
@@ -148,15 +149,15 @@ export class BrotePage implements OnInit {
       this.Ccolumna7=data[1][6]
       this.Ccolumna8=data[1][7]
       this.Ccolumna9=data[1][8]
-      const sumc1=this.Ccolumna1.reduce((a:any, b:any) => a + b, 0)
-      const sumc2=this.Ccolumna2.reduce((a:any, b:any) => a + b, 0)
-      const sumc3=this.Ccolumna3.reduce((a:any, b:any) => a + b, 0)
-      const sumc4=this.Ccolumna4.reduce((a:any, b:any) => a + b, 0)
-      const sumc5=this.Ccolumna5.reduce((a:any, b:any) => a + b, 0)
-      const sumc6=this.Ccolumna6.reduce((a:any, b:any) => a + b, 0)
-      const sumc7=this.Ccolumna7.reduce((a:any, b:any) => a + b, 0)
-      const sumc8=this.Ccolumna8.reduce((a:any, b:any) => a + b, 0)
-      const sumc9=this.Ccolumna9.reduce((a:any, b:any) => a + b, 0)
+      const sumc1=this.sum(this.Ccolumna1)
+      const sumc2=this.sum(this.Ccolumna2)
+      const sumc3=this.sum(this.Ccolumna3)
+      const sumc4=this.sum(this.Ccolumna4)
+      const sumc5=this.sum(this.Ccolumna5)
+      const sumc6=this.sum(this.Ccolumna6)
+      const sumc7=this.sum(this.Ccolumna7)
+      const sumc8=this.sum(this.Ccolumna8)
+      const sumc9=this.sum(this.Ccolumna9)
       this.Ccolumna1.push(sumc1)
       this.Ccolumna2.push(sumc2)
       this.Ccolumna3.push(sumc3)
@@ -183,15 +184,15 @@ export class BrotePage implements OnInit {
       this.GVcolumna7=data[1][6]
       this.GVcolumna8=data[1][7]
       this.GVcolumna9=data[1][8]
-      const sumc1=this.GVcolumna1.reduce((a:any, b:any) => a + b, 0)
-      const sumc2=this.GVcolumna2.reduce((a:any, b:any) => a + b, 0)
-      const sumc3=this.GVcolumna3.reduce((a:any, b:any) => a + b, 0)
-      const sumc4=this.GVcolumna4.reduce((a:any, b:any) => a + b, 0)
-      const sumc5=this.GVcolumna5.reduce((a:any, b:any) => a + b, 0)
-      const sumc6=this.GVcolumna6.reduce((a:any, b:any) => a + b, 0)
-      const sumc7=this.GVcolumna7.reduce((a:any, b:any) => a + b, 0)
-      const sumc8=this.GVcolumna8.reduce((a:any, b:any) => a + b, 0)
-      const sumc9=this.GVcolumna9.reduce((a:any, b:any) => a + b, 0)
+      const sumc1=this.sum(this.GVcolumna1)
+      const sumc2=this.sum(this.GVcolumna2)
+      const sumc3=this.sum(this.GVcolumna3)
+      const sumc4=this.sum(this.GVcolumna4)
+      const sumc5=this.sum(this.GVcolumna5)
+      const sumc6=this.sum(this.GVcolumna6)
+      const sumc7=this.sum(this.GVcolumna7)
+      const sumc8=this.sum(this.GVcolumna8)
+      const sumc9=this.sum(this.GVcolumna9)
       this.GVcolumna1.push(sumc1)
       this.GVcolumna2.push(sumc2)
       this.GVcolumna3.push(sumc3)
@@ -250,5 +251,14 @@ export class BrotePage implements OnInit {
 
   update() {
     window.location.reload()
+  }
+  sum(array:any=[]){
+    let sum = 0;
+    for (let i = 0; i < array.length-1; i++) {
+      console.log(array[i])
+      sum += array[i];
+    }
+    console.log(sum)
+    return sum
   }
 }
