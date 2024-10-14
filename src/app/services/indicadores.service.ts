@@ -46,4 +46,19 @@ export class IndicadoresService {
   getSalaBroteGV(){
     return this.http.get("back/Brote/gv")
   }
+
+  // Services to get data from spesific day
+
+  getBroteByDay(date:any,variedad:any,codVariedad:any){
+    return this.http.get("back/Brote_By_Date?fecha="+date+"&variedad="+variedad+"&codVariedad="+codVariedad)
+  }
+  getAperturaByDay(date:any,variedad:any,codVariedad:any){
+    return this.http.get("back/Brote/Apertura_By_Date?fecha="+date+"&variedad="+variedad+"&codVariedad="+codVariedad)
+  }
+  getCloudByDay(date:any){
+    return this.http.get("back/Brote/Cloud_By_Date?fecha="+date)
+  }
+  getGvByDay(date:any,variedad:any,codVariedad:any){
+    return this.http.get("back/Brote/Gv_By_Date?fecha="+date+"&variedad="+variedad+"&codVariedad="+codVariedad)
+  }
 }
